@@ -1,43 +1,93 @@
-World Layoffs: Data Cleaning and Exploratory Data Analysis (SQL)
-Project Overview
-This project involves a comprehensive data cleaning and exploratory analysis of a global layoffs dataset using MySQL. The goal was to take raw, "dirty" data and transform it into a "gold" standard format for analysis to uncover meaningful insights into the economic impact of layoffs across various companies, industries, and countries
-.
-Tools Used
-Database: MySQL
-Skills: Data Standardization, Duplicate Removal, Join Logic, CTEs (Common Table Expressions), Window Functions
-.
-Part 1: Data Cleaning
-The initial dataset was imported into a "Bronze" or raw table. To protect the integrity of the original data, a staging table was created for all subsequent cleaning steps
-.
-Cleaning Steps:
-Duplicate Removal: Since the data lacked a unique primary key, I used a ROW_NUMBER() window function partitioned across all columns to identify and delete duplicate records
-.
-Standardization:
-Trimming: Removed unnecessary whitespace from company names
-.
-Industry Alignment: Standardized inconsistent labels, such as merging various spellings of "cryptocurrency" into a single "Crypto" category
-.
-Geographic Fixes: Cleaned country names (e.g., removing trailing periods from "United States.")
-.
-Date Conversion: Converted the date column from a text string into a proper DATE data type to enable time-series analysis
-.
-Handling Null & Blank Values: Used self-joins to populate missing industry values where the data existed in other rows for the same company
-.
-Data Pruning: Removed rows that lacked both total layoffs and percentage layoff figures, as these were not useful for the intended analysis
-.
-Part 2: Exploratory Data Analysis (EDA)
-With the data cleaned, I explored the dataset to identify patterns and significant outliers
-.
-Key Insights:
-Peak Layoffs: Identified the highest single-day layoff (12,000 people) and highlighted companies that went completely under (100% layoff)
-.
-Industry Impact: Found that the Consumer and Retail sectors were hit hardest during the COVID-19 pandemic period
-.
-Geographic Concentration: Analysis showed the United States and India suffered the highest volumes of layoffs
-.
-Temporal Trends: Created Rolling Totals of layoffs by month to visualize the progression of layoffs over three years
-.
-Company Rankings: Utilized multiple CTEs to rank the top 5 companies with the most layoffs for each individual year (2020–2023)
-.
-Conclusion
-This project demonstrates a professional data analyst workflow: transitioning from raw, unusable data to complex SQL insights that provide clear business value
+# 🌍 World Layoffs Data Cleaning & Exploratory Data Analysis (SQL)
+
+## 📌 Project Overview
+
+This project demonstrates an end-to-end **Data Analytics workflow** using **MySQL**, covering both **data cleaning** and **exploratory data analysis (EDA)**.
+
+The dataset contains global layoffs from **2020–2023**. The goal was to transform raw, inconsistent data into a clean and reliable dataset, then analyze it to uncover trends across industries, countries, and companies.
+
+---
+
+## 🛠️ Tools & Technologies
+
+- **Database:** MySQL
+- **SQL Concepts Used:**
+  - Common Table Expressions (CTEs)
+  - Window Functions
+  - Joins
+  - Aggregate Functions
+  - String Manipulation
+  - Date Functions
+  - Data Type Conversion
+
+---
+
+# Part 1 — Data Cleaning
+
+The first phase focused on preparing the dataset for analysis by improving its quality and consistency.
+
+### ✔ Duplicate Removal
+- Identified duplicate records using `ROW_NUMBER()`
+- Removed duplicates despite the absence of a unique ID
+
+### ✔ Data Standardization
+- Trimmed unnecessary whitespace from company names
+- Standardized industry names (e.g., different cryptocurrency labels → **Crypto**)
+- Fixed inconsistent country names (e.g., `United States.` → `United States`)
+
+### ✔ Date Formatting
+- Converted text dates into MySQL `DATE` format using `STR_TO_DATE()`
+- Enabled accurate time-based analysis
+
+### ✔ Handling Missing Values
+- Filled missing industry values using self-joins when possible
+- Removed records missing essential layoff information
+
+---
+
+# Part 2 — Exploratory Data Analysis (EDA)
+
+After cleaning the data, SQL queries were used to answer business questions and identify trends.
+
+## 🔍 Analysis Performed
+
+- Identified the largest single-day layoff event
+- Analyzed layoffs by:
+  - Industry
+  - Country
+  - Company
+  - Year
+  - Month
+- Calculated monthly rolling totals to visualize layoff trends over time
+- Ranked the **Top 5 companies** with the highest layoffs each year using CTEs and window functions
+
+---
+
+## 📊 Key Insights
+
+- The largest recorded layoff involved **12,000 employees**.
+- **Consumer** and **Retail** industries experienced the highest layoffs.
+- The **United States** and **India** recorded the largest number of layoffs.
+- Layoffs increased significantly during 2022 before gradually declining.
+- Yearly rankings highlighted the companies most affected during each period.
+
+---
+
+## 🎯 Skills Demonstrated
+
+- SQL Data Cleaning
+- Exploratory Data Analysis (EDA)
+- Data Transformation
+- Window Functions
+- Common Table Expressions (CTEs)
+- Ranking & Aggregation
+- Data Quality Management
+- Business Insight Generation
+
+---
+
+## 📈 Conclusion
+
+This project demonstrates the ability to work with real-world messy datasets, clean and transform data using SQL, and extract meaningful business insights through exploratory analysis.
+
+It reflects a practical workflow commonly used by Data Analysts in real business environments.
